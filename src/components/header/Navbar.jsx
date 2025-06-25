@@ -8,10 +8,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#services", label: "Services" },
+    { href: "/", label: "Home" },
+    { href: "/#services", label: "Services" },
     { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact Us" },
+    { href: "/contact", label: "Contact Us" },
   ];
 
   return (

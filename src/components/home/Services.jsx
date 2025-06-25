@@ -34,7 +34,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-12">
+    <section id="services" className="pt-16 pb-10">
       <div className="px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
           Our Services
