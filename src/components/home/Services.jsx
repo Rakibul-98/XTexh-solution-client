@@ -9,12 +9,6 @@ export default function Services({ services }) {
     setExpanded(expanded === id ? 1 : id);
   };
 
-  const staticImages = {
-    1: "/images/service1.jpg",
-    2: "/images/service2.jpg",
-    3: "/images/service3.jpg",
-  };
-
   return (
     <section id="services" className="pt-16 pb-10">
       <div className="px-4">
@@ -35,13 +29,17 @@ export default function Services({ services }) {
             >
               <div className="absolute inset-0">
                 <Image
-                  src={service.image || "https://i.ibb.co/hRtS8bwb/hero-bg.jpg"}
+                  src={
+                    service.bgImage?.trim()
+                      ? service.bgImage
+                      : "https://i.ibb.co/hRtS8bwb/hero-bg.jpg"
+                  }
                   alt={service.title}
                   layout="fill"
                   objectFit="cover"
                   className={`transition-transform duration-300 ${
                     expanded === index
-                      ? ""
+                      ? "grayscale-0"
                       : "group-hover:scale-110 group-hover:grayscale-0 grayscale"
                   }`}
                 />

@@ -5,7 +5,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: {
+      email: "admin@xtech.com",
+      password: "password123",
+    },
+  });
   const [loading, setLoading] = useState(false);
   const [responseMsg, setResponseMsg] = useState(null);
   const router = useRouter();

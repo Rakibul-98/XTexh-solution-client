@@ -7,7 +7,7 @@ export default function CommonLayout({ children }) {
       <div className="sticky top-0 z-50">
         <Navbar />
       </div>
-      <div className="min-h-screen">{children}</div>
+      <div className="min-h-screen ">{children}</div>
       <Footer />
     </div>
   );

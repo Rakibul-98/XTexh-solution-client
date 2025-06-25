@@ -6,6 +6,7 @@ import ServicesForm from "./ServicesForm";
 import Inbox from "./Inbox";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 export default function Dashboard() {
   const [activeForm, setActiveForm] = useState("hero");
@@ -52,35 +53,35 @@ export default function Dashboard() {
     router.push("/");
   };
 
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        setLoadingMessages(true);
-        setErrorMessages(null);
+  const fetchMessages = async () => {
+    try {
+      setLoadingMessages(true);
+      setErrorMessages(null);
 
-        const token = localStorage.getItem("xtech_token");
-        const res = await fetch(
-          "https://x-tech-solution-backend.vercel.app/api/messages",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (!res.ok) {
-          throw new Error("Failed to fetch messages");
+      const token = localStorage.getItem("xtech_token");
+      const res = await fetch(
+        "https://x-tech-solution-backend.vercel.app/api/messages",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
+      );
 
-        const data = await res.json();
-        setSubmissions(data.messages || data);
-      } catch (err) {
-        setErrorMessages(err.message);
-      } finally {
-        setLoadingMessages(false);
+      if (!res.ok) {
+        throw new Error("Failed to fetch messages");
       }
-    };
 
+      const data = await res.json();
+      setSubmissions(data.messages || data);
+    } catch (err) {
+      setErrorMessages(err.message);
+    } finally {
+      setLoadingMessages(false);
+    }
+  };
+
+  useEffect(() => {
     fetchMessages();
   }, []);
 
@@ -178,14 +179,18 @@ export default function Dashboard() {
           </Link>
           <button
             onClick={handleLogout}
-            className="px-4 py-1 rounded bg-red-800 text-white transition cursor-pointer"
+            className="px-4 py-1 rounded bg-red-500 text-white transition cursor-pointer"
           >
             Logout
           </button>
         </div>
       </div>
       <div className="grid md:grid-cols-2 gap-6 items-start">
-        {loadingMessages && <p>Loading messages...</p>}
+        {loadingMessages && (
+          <p className="flex justify-center w-full mt-10 animate-spin">
+            <Loader2 size="38" />
+          </p>
+        )}
         {errorMessages && (
           <p className="text-red-600">Error: {errorMessages}</p>
         )}
@@ -194,6 +199,7 @@ export default function Dashboard() {
             submissions={submissions}
             expandedMessage={expandedMessage}
             setExpandedMessage={setExpandedMessage}
+            fetchMessages={fetchMessages}
           />
         )}
 
@@ -219,7 +225,9 @@ export default function Dashboard() {
           </div>
 
           {loadingSettings ? (
-            <p>Loading settings...</p>
+            <p className="flex justify-center w-full mt-10 animate-spin">
+              <Loader2 size="38" />
+            </p>
           ) : errorSettings ? (
             <p className="text-red-600">Error: {errorSettings}</p>
           ) : activeForm === "hero" ? (
