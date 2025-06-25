@@ -4,9 +4,12 @@ import Map from "../../components/home/Map";
 import ChatPlugin from "../../components/home/ChatPlugin";
 
 async function getSettings() {
-  const res = await fetch("http://localhost:5000/api/settings", {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    "https://x-tech-solution-backend.vercel.app/api/settings",
+    {
+      cache: "no-store",
+    }
+  );
   if (!res.ok) throw new Error("Failed to fetch settings");
   return res.json();
 }

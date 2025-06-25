@@ -13,13 +13,16 @@ export default function Contact() {
     setResponseMsg(null);
 
     try {
-      const res = await fetch("http://localhost:5000/api/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const res = await fetch(
+        "https://x-tech-solution-backend.vercel.app/api/messages",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to send message");

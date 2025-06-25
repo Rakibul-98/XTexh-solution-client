@@ -59,11 +59,14 @@ export default function Dashboard() {
         setErrorMessages(null);
 
         const token = localStorage.getItem("xtech_token");
-        const res = await fetch("http://localhost:5000/api/messages", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await fetch(
+          "https://x-tech-solution-backend.vercel.app/api/messages",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Failed to fetch messages");
@@ -89,11 +92,14 @@ export default function Dashboard() {
 
         const token = localStorage.getItem("xtech_token");
 
-        const res = await fetch("http://localhost:5000/api/settings", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await fetch(
+          "https://x-tech-solution-backend.vercel.app/api/settings",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Failed to fetch settings");
@@ -135,14 +141,17 @@ export default function Dashboard() {
     try {
       const token = localStorage.getItem("xtech_token");
 
-      const res = await fetch("http://localhost:5000/api/settings", {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const res = await fetch(
+        "https://x-tech-solution-backend.vercel.app/api/settings",
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to save settings");
