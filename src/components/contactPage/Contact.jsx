@@ -1,13 +1,38 @@
 "use client";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Contact() {
   const { register, handleSubmit, reset } = useForm();
+  const [loading, setLoading] = useState(false);
+  const [responseMsg, setResponseMsg] = useState(null);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    setLoading(true);
+    setResponseMsg(null);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      const result = await res.json();
+      setResponseMsg("Message sent successfully!");
+      reset();
+    } catch (error) {
+      setResponseMsg("Oops! Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -45,11 +70,20 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition cursor-pointer"
+            disabled={loading}
+            className={`w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition cursor-pointer ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            Send Message
+            {loading ? "Sending..." : "Send Message"}
           </button>
         </form>
+
+        {responseMsg && (
+          <p className="mt-4 text-center text-sm text-gray-700">
+            {responseMsg}
+          </p>
+        )}
       </div>
     </div>
   );

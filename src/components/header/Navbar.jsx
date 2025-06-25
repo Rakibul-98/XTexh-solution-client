@@ -3,16 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { LucideArrowRight, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/#services", label: "Services" },
-    { href: "#projects", label: "Projects" },
-    { href: "/contact", label: "Contact Us" },
   ];
+
+  const handleContact = () => {
+    router.push("/contact");
+  };
 
   return (
     <nav className="bg-gray-100 px-4 shadow-md">
@@ -32,8 +36,11 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <button className="ml-3 flex items-center bg-white text-gray-800 px-3 py-1 rounded-full border hover:shadow-md transition gap-2 cursor-pointer">
-            BOOK A CALL
+          <button
+            onClick={handleContact}
+            className="ml-3 flex items-center bg-white text-gray-800 px-3 py-1 rounded-full border hover:shadow-md transition gap-2 cursor-pointer"
+          >
+            Contact Us
             <LucideArrowRight />
           </button>
         </div>
@@ -57,8 +64,11 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <button className="w-full flex mt-2 justify-between text-left px-4 py-2 bg-white text-gray-800 border rounded-md cursor-pointer">
-            BOOK A CALL
+          <button
+            onClick={handleContact}
+            className="w-full flex mt-2 justify-between text-left px-4 py-2 bg-white text-gray-800 border rounded-md cursor-pointer"
+          >
+            Contact Us
             <LucideArrowRight />
           </button>
         </div>

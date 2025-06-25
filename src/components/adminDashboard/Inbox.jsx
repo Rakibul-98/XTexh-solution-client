@@ -11,14 +11,14 @@ export default function Inbox({
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-semibold mb-2">Contact Form Submissions</h2>
-      {submissions.map((submission) => {
+      {submissions.map((submission, i) => {
         const isExpanded = expandedMessage === submission.id;
         const shouldTruncate =
           submission.message.length > MESSAGE_TRUNCATE_LENGTH && !isExpanded;
 
         return (
           <div
-            key={submission.id}
+            key={i}
             className="p-4 border border-gray-300 rounded space-y-2 bg-white"
           >
             <p>

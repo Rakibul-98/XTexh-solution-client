@@ -1,22 +1,29 @@
-import React from "react";
 import Hero from "../../components/home/Hero";
 import Services from "../../components/home/Services";
 import Map from "../../components/home/Map";
 import ChatPlugin from "../../components/home/ChatPlugin";
 
-const HomePage = () => {
+async function getSettings() {
+  const res = await fetch("http://localhost:5000/api/settings", {
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error("Failed to fetch settings");
+  return res.json();
+}
+
+export default async function HomePage() {
+  const settings = await getSettings();
+
   return (
     <div>
       <Hero
-        title="Empowering Your Business with Smart Tech"
-        subtitle="Innovative software & AI-driven solutions to help your company grow."
-        backgroundImage="https://i.ibb.co/hRtS8bwb/hero-bg.jpg"
+        title={settings.hero?.title}
+        subtitle={settings.hero?.subtitle}
+        backgroundImage={settings.hero?.backgroundImage}
       />
-      <Services />
+      <Services services={settings.services} />
       <Map />
       <ChatPlugin />
     </div>
   );
-};
-
-export default HomePage;
+}
