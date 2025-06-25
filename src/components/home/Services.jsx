@@ -46,7 +46,7 @@ export default function Services() {
               key={service.id}
               className={`relative cursor-pointer group shadow-md overflow-hidden rounded-md transition-all duration-500 ${
                 expanded === service.id
-                  ? "h-100 md:h-auto md:col-span-3"
+                  ? "min-h-72 md:h-auto md:col-span-3"
                   : "h-48 md:h-100"
               }`}
               onClick={() => toggleExpand(service.id)}
