@@ -10,9 +10,8 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-100 py-3">
+    <footer className="bg-gray-100 py-5">
       <div className="mx-auto flex flex-col md:flex-row items-center justify-between px-4 space-y-4 md:space-y-0">
-        {/* Logo & Tagline */}
         <div className="flex items-end gap-3">
           <Image src="/xtech.png" alt="XTech Solution" width={50} height={50} />
           <p className="text-gray-600 text-center md:text-left">
@@ -20,7 +19,6 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Social Icons */}
         <div className="flex space-x-4">
           {socialLinks.map((link, index) => (
             <a
@@ -36,7 +34,6 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Legal or Credits */}
         <p className="text-gray-500 text-sm text-center md:text-right">
           © 2025 XTech Solution. All rights reserved.
         </p>

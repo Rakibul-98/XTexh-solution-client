@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "../../components/home/Hero";
 import Services from "../../components/home/Services";
 import Map from "../../components/home/Map";
+import ChatPlugin from "../../components/home/ChatPlugin";
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       />
       <Services />
       <Map />
+      <ChatPlugin />
     </div>
   );
 };

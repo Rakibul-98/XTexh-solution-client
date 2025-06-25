@@ -17,12 +17,10 @@ export default function Navbar() {
   return (
     <nav className="bg-gray-100 px-4 shadow-md">
       <div className="mx-auto flex items-center justify-between">
-        {/* Logo */}
         <div className="flex items-center py-2">
           <Image src="/xtech.png" alt="XTech Solution" width={60} height={60} />
         </div>
 
-        {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
             <Link
@@ -40,7 +38,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -48,7 +45,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden pb-3">
           {navLinks.map((link) => (
