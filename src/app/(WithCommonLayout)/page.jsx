@@ -5,7 +5,11 @@ import Services from "../../components/home/Services";
 const HomePage = () => {
   return (
     <div>
-      <Hero />
+      <Hero
+        title="Empowering Your Business with Smart Tech"
+        subtitle="Innovative software & AI-driven solutions to help your company grow."
+        backgroundImage="https://i.ibb.co/hRtS8bwb/hero-bg.jpg"
+      />
       <Services />
     </div>
   );
