@@ -5,7 +5,7 @@ export default function Inbox({
   submissions,
   expandedMessage,
   setExpandedMessage,
-  fetchMessages, // Expecting fetchMessages function from parent to refresh list after deletion
+  fetchMessages,
 }) {
   const MESSAGE_TRUNCATE_LENGTH = 60;
 
@@ -13,17 +13,20 @@ export default function Inbox({
     if (confirm("Are you sure you want to delete this message?")) {
       try {
         const token = localStorage.getItem("xtech_token");
-        const res = await fetch(`http://localhost:5000/api/messages/${id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await fetch(
+          `https://x-tech-solution-backend.vercel.app/api/messages/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!res.ok) throw new Error("Failed to delete message");
 
         alert("Message deleted successfully");
-        fetchMessages(); // Refresh messages list
+        fetchMessages();
       } catch (error) {
         alert(error.message);
       }

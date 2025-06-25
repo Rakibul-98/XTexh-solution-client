@@ -19,6 +19,11 @@ export default function ServicesForm({
               placeholder={`Service ${index + 1} Description`}
               className="w-full px-4 py-2 border border-gray-300 rounded focus:border-black focus:outline-none"
             />
+            <input
+              {...register(`services.${index}.bgImage`, { required: false })}
+              placeholder={`Service ${index + 1} Image URL`}
+              className="w-full px-4 py-2 border border-gray-300 rounded focus:border-black focus:outline-none"
+            />
           </div>
         ))}
         <button

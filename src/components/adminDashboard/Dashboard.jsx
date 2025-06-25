@@ -36,9 +36,9 @@ export default function Dashboard() {
         backgroundImage: "",
       },
       services: [
-        { title: "", description: "" },
-        { title: "", description: "" },
-        { title: "", description: "" },
+        { title: "", description: "", bgImage: "" },
+        { title: "", description: "", bgImage: "" },
+        { title: "", description: "", bgImage: "" },
       ],
     },
   });
